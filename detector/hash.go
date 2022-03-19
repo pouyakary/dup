@@ -11,7 +11,7 @@ import (
 	exifremove "github.com/scottleedavis/go-exif-remove"
 )
 
-func ComputeFileMD5(path string, context *command.ComputationContext) (string, error) {
+func ComputeFileHash(path string, context *command.ComputationContext) (string, error) {
 	if fileInfo, _ := os.Stat(path); fileInfo.IsDir() {
 		return "", nil
 	}
@@ -45,7 +45,7 @@ func normalizeBytes(path string, bytes []byte, context *command.ComputationConte
 
 	extension := strings.ToLower(filepath.Ext(path))
 	switch extension {
-	case ".jpeg", ".jpg":
+	case ".jpeg", ".jpg", ".png":
 		return normalizeJPEGBytes(bytes)
 	default:
 		return bytes, nil
