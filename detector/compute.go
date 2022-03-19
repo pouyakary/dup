@@ -55,7 +55,7 @@ func FindDouplicateFiles(directory string, term *terminal.Terminal) []string {
 				)
 				if err != nil {
 					fmt.Printf("failed to compute md5 for: %s\n", name)
-				} else {
+				} else if md5 != "" {
 					post <- &resultHash{name: name, hash: md5}
 				}
 			}
