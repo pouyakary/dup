@@ -6,14 +6,16 @@ import (
 )
 
 type ComputationContext struct {
-	Directory string
-	Quite     bool
-	Remove    bool
+	Directory   string
+	DisplayHelp bool
+	Quite       bool
+	Remove      bool
 }
 
 func ParseCommandLineArguments() *ComputationContext {
 	var (
 		directory        string
+		help             = false
 		quite            = false
 		remove           = false
 		args             = os.Args[1:]
@@ -22,13 +24,24 @@ func ParseCommandLineArguments() *ComputationContext {
 
 	for _, arg := range args {
 		switch arg {
-		case "-q", "--quite":
+		case "-h", "--help", "help":
+			help = true
+		case "-q", "--quite", "quite":
 			quite = true
-		case "-r", "--remove":
+		case "-r", "--remove", "remove":
 			remove = true
 		default:
 			directory = arg
 			foundDirectories++
+		}
+	}
+
+	if help {
+		return &ComputationContext{
+			Directory:   "",
+			DisplayHelp: true,
+			Quite:       false,
+			Remove:      false,
 		}
 	}
 
@@ -52,8 +65,9 @@ func ParseCommandLineArguments() *ComputationContext {
 	}
 
 	return &ComputationContext{
-		Directory: directory,
-		Quite:     quite,
-		Remove:    remove,
+		Directory:   directory,
+		DisplayHelp: help,
+		Quite:       quite,
+		Remove:      remove,
 	}
 }
