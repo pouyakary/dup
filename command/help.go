@@ -9,5 +9,6 @@ func DisplayHelp() {
 	fmt.Println("  -h, help		displays this help message")
 	fmt.Println("  -q, quite    stops the software from displaying the results")
 	fmt.Println("  -r, remove   removes the duplicates from the directory")
+	fmt.Println("  -e, exact    compares the files exactly, without normalization")
 	fmt.Println("")
 }

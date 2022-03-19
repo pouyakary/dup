@@ -10,6 +10,7 @@ type ComputationContext struct {
 	DisplayHelp bool
 	Quite       bool
 	Remove      bool
+	Exact       bool
 }
 
 func ParseCommandLineArguments() *ComputationContext {
@@ -18,6 +19,7 @@ func ParseCommandLineArguments() *ComputationContext {
 		help             = false
 		quite            = false
 		remove           = false
+		exact            = false
 		args             = os.Args[1:]
 		foundDirectories = 0
 	)
@@ -30,6 +32,8 @@ func ParseCommandLineArguments() *ComputationContext {
 			quite = true
 		case "-r", "--remove", "remove":
 			remove = true
+		case "-e", "exact":
+			exact = true
 		default:
 			directory = arg
 			foundDirectories++
@@ -42,6 +46,7 @@ func ParseCommandLineArguments() *ComputationContext {
 			DisplayHelp: true,
 			Quite:       false,
 			Remove:      false,
+			Exact:       true,
 		}
 	}
 
@@ -69,5 +74,6 @@ func ParseCommandLineArguments() *ComputationContext {
 		DisplayHelp: help,
 		Quite:       quite,
 		Remove:      remove,
+		Exact:       exact,
 	}
 }

@@ -17,7 +17,7 @@ func main() {
 		return
 	}
 
-	duplicates := detector.FindDouplicateFiles(context.Directory, term)
+	duplicates := detector.FindDouplicateFiles(context.Directory, term, context)
 
 	if context.Remove {
 		command.RemoveFiles(context.Directory, duplicates)

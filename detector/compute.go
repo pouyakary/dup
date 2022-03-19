@@ -1,6 +1,7 @@
 package detector
 
 import (
+	"dup/command"
 	"dup/terminal"
 	"fmt"
 	"io/ioutil"
@@ -25,7 +26,7 @@ func detectListOfDuplicates(directory string) []string {
 	return list
 }
 
-func FindDouplicateFiles(directory string, term *terminal.Terminal) []string {
+func FindDouplicateFiles(directory string, term *terminal.Terminal, context *command.ComputationContext) []string {
 	var (
 		filesList        = detectListOfDuplicates(directory)
 		size             = len(filesList)
@@ -51,7 +52,7 @@ func FindDouplicateFiles(directory string, term *terminal.Terminal) []string {
 				var (
 					name     = filesList[index]
 					path     = directory + "/" + name
-					md5, err = ComputeFileMD5(path)
+					md5, err = ComputeFileMD5(path, context)
 				)
 				if err != nil {
 					fmt.Printf("failed to compute md5 for: %s\n", name)
