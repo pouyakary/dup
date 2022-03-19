@@ -52,7 +52,7 @@ func FindDouplicateFiles(directory string, term *terminal.Terminal, context *com
 				var (
 					name     = filesList[index]
 					path     = directory + "/" + name
-					md5, err = ComputeFileMD5(path, context)
+					md5, err = ComputeFileHash(path, context)
 				)
 				if err != nil {
 					fmt.Printf("failed to compute md5 for: %s\n", name)
