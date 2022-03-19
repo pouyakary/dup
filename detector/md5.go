@@ -1,9 +1,8 @@
 package detector
 
 import (
-	"crypto/md5"
 	"fmt"
-	"io"
+	"hash/adler32"
 	"os"
 )
 
@@ -12,18 +11,14 @@ func ComputeFileMD5(filePath string) (string, error) {
 		return "", nil
 	}
 
-	file, err := os.Open(filePath)
+	file, err := os.ReadFile(filePath)
+
 	if err != nil {
 		return "", err
 	}
-	defer file.Close()
 
-	hash := md5.New()
-	if _, err := io.Copy(hash, file); err != nil {
-		return "", err
-	}
+	checksum := adler32.Checksum(file)
+	hash := fmt.Sprintf("%x", checksum)
 
-	md5 := fmt.Sprintf("%x", hash.Sum(nil))
-
-	return md5, nil
+	return hash, nil
 }
