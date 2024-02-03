@@ -9,7 +9,7 @@ Have yourself the Golang installed. On UNIX machines you can have the GNU Make a
 ```
 usage: dup [options] <directory>
   -h, help     displays this help message
-  -q, quite    stops the software from displaying the results
+  -q, quiet    stops the software from displaying the results
   -r, remove   removes the duplicates from the directory
   -e, exact    compares the files exactly, without normalization
 ```

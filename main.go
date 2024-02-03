@@ -9,7 +9,7 @@ import (
 func main() {
 	var (
 		context = command.ParseCommandLineArguments()
-		term    = terminal.NewTerminal(!context.Quite)
+		term    = terminal.NewTerminal(!context.Quiet)
 	)
 
 	if context.DisplayHelp {

@@ -8,7 +8,7 @@ import (
 type ComputationContext struct {
 	Directory   string
 	DisplayHelp bool
-	Quite       bool
+	Quiet       bool
 	Remove      bool
 	Exact       bool
 }
@@ -17,7 +17,7 @@ func ParseCommandLineArguments() *ComputationContext {
 	var (
 		directory        string
 		help             = false
-		quite            = false
+		quiet            = false
 		remove           = false
 		exact            = false
 		args             = os.Args[1:]
@@ -28,8 +28,8 @@ func ParseCommandLineArguments() *ComputationContext {
 		switch arg {
 		case "-h", "--help", "help":
 			help = true
-		case "-q", "--quite", "quite":
-			quite = true
+		case "-q", "--quiet", "quiet":
+			quiet = true
 		case "-r", "--remove", "remove":
 			remove = true
 		case "-e", "exact":
@@ -44,7 +44,7 @@ func ParseCommandLineArguments() *ComputationContext {
 		return &ComputationContext{
 			Directory:   "",
 			DisplayHelp: true,
-			Quite:       false,
+			Quiet:       false,
 			Remove:      false,
 			Exact:       true,
 		}
@@ -72,7 +72,7 @@ func ParseCommandLineArguments() *ComputationContext {
 	return &ComputationContext{
 		Directory:   directory,
 		DisplayHelp: help,
-		Quite:       quite,
+		Quiet:       quiet,
 		Remove:      remove,
 		Exact:       exact,
 	}
